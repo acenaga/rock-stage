@@ -6,7 +6,7 @@
 
         <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             @foreach ($videos as $video)
-                <a href="{{ route('video.detail', ['video' => $video->id]) }}">
+                <a href="{{ route('videos.show', ['video' => $video->id]) }}">
                     <div
                         class="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-xl dark:bg-gray-800">
                         {{-- Imagen del video --}}

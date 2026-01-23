@@ -11,10 +11,10 @@ class VideoController extends Controller
     {
         $videos = Video::all();
 
-        return view('home-video', compact(['videos']));
+        return view('videos.index', compact(['videos']));
     }
     public function show(Video $video): View
     {
-        return view('video-detail', compact(['video']));
+        return view('videos.show', compact(['video']));
     }
 }
