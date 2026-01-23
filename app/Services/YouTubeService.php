@@ -24,8 +24,6 @@ class YouTubeService
                 'id' => $videoId
             ]);
 
-            dd($response);
-
             if (empty($response->items)) {
                 return null;
             }
@@ -43,7 +41,6 @@ class YouTubeService
             ];
         } catch (Exception $e) {
             report($e);
-            dd($e);
             return null;
         }
     }

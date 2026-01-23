@@ -21,6 +21,7 @@ return new class extends Migration
             $table->integer('duration')->nullable(); // duration in seconds
             $table->string('band_name')->nullable();
             $table->string('region')->nullable();
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
 
             $table->timestamps();
         });

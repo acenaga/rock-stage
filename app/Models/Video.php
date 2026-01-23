@@ -18,6 +18,7 @@ class Video extends Model
         'duration',
         'band_name',
         'region',
+        'status'
     ];
 
     protected $casts = [
