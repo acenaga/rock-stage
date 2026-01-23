@@ -11,16 +11,10 @@ Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 Route::get('/videos', [App\Http\Controllers\VideoController::class, 'index'])
-    ->middleware(['auth', 'verified'])
     ->name('videos.index');
+//->middleware(['auth', 'verified'])
 Route::get('/videos/{video}', [App\Http\Controllers\VideoController::class, 'show'])
-    ->middleware(['auth', 'verified'])
     ->name('videos.show');
-
-Route::get('/test', function () {
-
-    $service = new \App\Services\YouTubeService;
-    return $service->getVideoDetails('dQw4w9WgXcQ');
-});
+//->middleware(['auth', 'verified'])
 
 require __DIR__ . '/settings.php';
