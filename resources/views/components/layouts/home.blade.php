@@ -10,7 +10,11 @@
 </head>
 
 <body class="bg-gray-100 text-gray-900">
-    {{ $slot }}
+    <x-navigation-header />
+    
+    <main>
+        {{ $slot }}
+    </main>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/lite-youtube-embed@0.3.0/src/lite-yt-embed.js"></script>

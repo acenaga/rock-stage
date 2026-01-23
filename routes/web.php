@@ -17,4 +17,10 @@ Route::get('/videos/{video}', [App\Http\Controllers\VideoController::class, 'sho
     ->middleware(['auth', 'verified'])
     ->name('videos.show');
 
+Route::get('/test', function () {
+
+    $service = new \App\Services\YouTubeService;
+    return $service->getVideoDetails('dQw4w9WgXcQ');
+});
+
 require __DIR__ . '/settings.php';
