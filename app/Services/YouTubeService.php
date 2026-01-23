@@ -2,29 +2,31 @@
 
 namespace App\Services;
 
+use Exception;
 use Google\Client;
 use Google\Service\YouTube;
-use Exception;
 
 class YouTubeService
 {
-    protected $youtube;
+    protected YouTube $youtube;
 
     public function __construct()
     {
-        $client = new Client();
+        $client = new Client;
         $client->setDeveloperKey(config('services.youtube.key'));
         $this->youtube = new YouTube($client);
     }
 
-    public function getVideoDetails(string $videoId)
+    public function getVideoDetails(?string $videoId): ?array
     {
+        if (! is_string($videoId) || trim($videoId) === '') {
+            return null;
+        }
+
         try {
             $response = $this->youtube->videos->listVideos('snippet,contentDetails', [
-                'id' => $videoId
+                'id' => $videoId,
             ]);
-
-            dd($response);
 
             if (empty($response->items)) {
                 return null;
@@ -34,24 +36,30 @@ class YouTubeService
             $snippet = $video->getSnippet();
 
             return [
-                'youtube_id'    => $videoId,
-                'title'         => $snippet->getTitle(),
-                'description'   => $snippet->getDescription(),
-                'thumbnail' => $snippet->getThumbnails()->getHigh()->getUrl(),
-                'duration'      => $this->parseDuration($video->getContentDetails()->getDuration()),
-                'band_name'    => $snippet->getChannelTitle(),
+                'youtube_id' => $videoId,
+                'title' => $snippet->getTitle(),
+                'description' => $snippet->getDescription(),
+                'thumbnail_url' => $snippet->getThumbnails()->getHigh()->getUrl(),
+                'duration' => $this->parseDuration($video->getContentDetails()->getDuration()),
+                'band_name' => $snippet->getChannelTitle(),
             ];
         } catch (Exception $e) {
             report($e);
-            dd($e);
+
             return null;
         }
     }
 
-    private function parseDuration($duration)
+    private function parseDuration(string $duration): int
     {
-        $interval = new \DateInterval($duration);
+        try {
+            $interval = new \DateInterval($duration);
+        } catch (Exception) {
+            return 0;
+        }
+
         $seconds = ($interval->h * 3600) + ($interval->i * 60) + $interval->s;
+
         return $seconds;
     }
 }

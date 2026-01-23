@@ -11,8 +11,8 @@
                         class="overflow-hidden rounded-lg bg-white shadow-md transition-shadow duration-300 hover:shadow-xl dark:bg-gray-800">
                         {{-- Imagen del video --}}
                         <div class="relative aspect-video bg-gray-200 dark:bg-gray-700">
-                            @if ($video->thumbnail)
-                                <img src="{{ $video->thumbnail }}" alt="{{ $video->title }}"
+                            @if ($video->thumbnail_url)
+                                <img src="{{ $video->thumbnail_url }}" alt="{{ $video->title }}"
                                     class="h-full w-full object-cover">
                             @else
                                 <div class="flex h-full w-full items-center justify-center text-gray-400">

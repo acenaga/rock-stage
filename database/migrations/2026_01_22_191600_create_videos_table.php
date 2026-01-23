@@ -17,10 +17,11 @@ return new class extends Migration
             $table->string('id_youtube')->unique();
             $table->string('title');
             $table->text('description')->nullable();
-            $table->string('thumbnail')->nullable();
+            $table->string('thumbnail_url')->nullable();
             $table->integer('duration')->nullable(); // duration in seconds
             $table->string('band_name')->nullable();
             $table->string('region')->nullable();
+            $table->enum('status', ['pending', 'processing', 'completed', 'failed', 'approved', 'rejected'])->default('pending');
 
             $table->timestamps();
         });
