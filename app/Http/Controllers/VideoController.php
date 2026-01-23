@@ -13,4 +13,8 @@ class VideoController extends Controller
 
         return view('home-video', compact(['videos']));
     }
+    public function show(Video $video): View
+    {
+        return view('video-detail', compact(['video']));
+    }
 }

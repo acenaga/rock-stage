@@ -430,7 +430,7 @@ class VideoSeeder extends Seeder
         ];
 
         foreach ($videos as $video) {
-            Video::create($video);
+            Video::updateOrCreate(['id_youtube' => $video['id_youtube']], $video);
         }
     }
 }

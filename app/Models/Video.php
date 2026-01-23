@@ -19,4 +19,15 @@ class Video extends Model
         'band_name',
         'region',
     ];
+
+    protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i:s',
+        'updated_at' => 'datetime:Y-m-d H:i:s',
+    ];
+    public function getDurationInMinutesAndSeconds(): string
+    {
+        $minutes = floor($this->duration / 60);
+        $seconds = $this->duration % 60;
+        return sprintf('%02d:%02d', $minutes, $seconds);
+    }
 }
