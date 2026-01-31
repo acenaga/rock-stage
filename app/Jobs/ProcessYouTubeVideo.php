@@ -4,10 +4,10 @@ namespace App\Jobs;
 
 use App\Models\Video;
 use App\Services\YouTubeService;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class ProcessYouTubeVideo implements ShouldQueue
 {
